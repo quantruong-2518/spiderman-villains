@@ -1,0 +1,103 @@
+@import "mixins";
+
+html {
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(23, 22, 22);
+  color: white;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.villain {
+  height: 100vh;
+  padding: 2rem;
+
+  > * {
+    margin-bottom: 2rem;
+  }
+
+  > header {
+    > span {
+      text-transform: uppercase;
+      font-size: 3rem;
+    }
+  }
+
+  &-description {
+  }
+
+  &-cards {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    > .card {
+      @extend .flex-center;
+      width: 100%;
+      background-color: rgb(21, 28, 32);
+      border-radius: 1.25rem;
+      flex-direction: column;
+      padding: 1.5rem 1rem;
+      transition: all 0.25s ease-in-out;
+
+      &:hover {
+        transform: translateY(-1rem);
+        box-shadow: 1px 1px 8px #888;
+      }
+
+      // responsive /////
+
+      @include breakpoint(md) {
+        width: 45%;
+      }
+
+      @include breakpoint(lg) {
+        width: 20%;
+      }
+
+      /////////////////
+
+      + .card {
+        margin: 0.5rem;
+      }
+
+      > * {
+        margin-bottom: 1rem;
+      }
+
+      .card {
+        &-img {
+          width: 100%;
+          @extend .flex-center;
+
+          > img {
+            width: 70%;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+          }
+        }
+
+        &-name {
+          font-weight: bold;
+        }
+
+        &-info {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+#selected-name {
+  position: fixed;
+  font-size: 3rem;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
